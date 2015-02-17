@@ -3,7 +3,7 @@ size(400, 800, P2D);
 noLoop();
 }
 void draw() {
-background(255, 204, 0);
+background(255, 255, 255);
 plant(15, 0.2, 1.5);
 }
 void leaf() {
