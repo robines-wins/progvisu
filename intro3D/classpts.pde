@@ -24,7 +24,7 @@ class My2DBox {
   this.s = s;
   }
   void render(){
-   strokeWeight(3);
+  strokeWeight(3);
   stroke(255,0,0);
   line(s[1].x, s[1].y, s[2].x, s[2].y);
   line(s[1].x, s[1].y, s[0].x, s[0].y);
@@ -84,3 +84,16 @@ My2DBox projectBox (My3DPoint eye, My3DBox box) {
   return new My2DBox(projectedBox);
 }
 
+
+My3DBox transformBox(My3DBox box, float[][] transformMatrix) {
+  My3DPoint[] newBoxPts = new My3DPoint[8];
+  for (int i=0; i<box.p.length; i++){
+    newBoxPts[i] = euclidian3DPoint( matrixProduct(transformMatrix, homogeneous3DPoint(box.p[i])));
+  }
+  return new My3DBox(newBoxPts);
+}
+
+My3DPoint euclidian3DPoint (float[] a) {
+  My3DPoint result = new My3DPoint(a[0]/a[3], a[1]/a[3], a[2]/a[3]);
+  return result;
+}
